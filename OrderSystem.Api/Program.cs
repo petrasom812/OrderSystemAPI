@@ -1,5 +1,6 @@
 using Microsoft.EntityFrameworkCore;
 using OrderSystem.Api.Data;
+using OrderSystem.Api.Interface;
 using OrderSystem.Api.Services;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -8,7 +9,7 @@ var builder = WebApplication.CreateBuilder(args);
 // Learn more about configuring OpenAPI at https://aka.ms/aspnet/openapi
 builder.Services.AddControllers();
 builder.Services.AddEndpointsApiExplorer();
-builder.Services.AddScoped<ServiceOrder>();
+builder.Services.AddScoped<IServiceOrder, ServiceOrder>();
 builder.Services.AddDbContext<AppDbContext>(options => 
     options.UseSqlite("Data Source=order.db"));
 builder.Services.AddSwaggerGen();

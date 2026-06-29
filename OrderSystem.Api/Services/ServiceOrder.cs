@@ -2,10 +2,11 @@ using OrderSystem.Api.Models;
 using OrderSystem.Api.DTOs;
 using OrderSystem.Api.Data;
 using Microsoft.EntityFrameworkCore;
+using OrderSystem.Api.Interface;
 
 namespace OrderSystem.Api.Services
 {
-    public class ServiceOrder
+    public class ServiceOrder : IServiceOrder
     {
         private readonly AppDbContext _context;
         public ServiceOrder(AppDbContext context)
@@ -14,7 +15,7 @@ namespace OrderSystem.Api.Services
         }
 
         //Get Method: Get all orders
-        public async Task<List<GetOrderDto>> GetOrder()
+        public async Task<List<GetOrderDto>> GetOrderAsync()
         {
             var orders = await _context.Orders.ToListAsync();
 
@@ -26,7 +27,7 @@ namespace OrderSystem.Api.Services
             }).ToList();
         }
         //Get Method: Get Order by Id
-        public async Task<GetOrderDetailDto?> GetOrderDetailById(int id)
+        public async Task<GetOrderDetailDto?> GetOrderDetailByIdAsync(int id)
         {
             var order = await _context.Orders.FindAsync(id);
 
@@ -41,7 +42,7 @@ namespace OrderSystem.Api.Services
             } : null;
         }
         //POST Method: Add Order
-        public async Task<GetOrderDetailDto> AddOrder(decimal totalAmount, string status)
+        public async Task<GetOrderDetailDto> AddOrderAsync(decimal totalAmount, string status)
         {
             var order = new OrderModel
             {
@@ -66,7 +67,7 @@ namespace OrderSystem.Api.Services
         }
 
         //PUT Method: Update order detail
-        public async Task<UpdateOrderDto?> UpdateOrder(int id, decimal totalAmount, string status)
+        public async Task<UpdateOrderDto?> UpdateOrderAsync(int id, decimal totalAmount, string status)
         {
             var order = await _context.Orders.FindAsync(id);
             if (order == null)
@@ -90,9 +91,9 @@ namespace OrderSystem.Api.Services
 
         //DELETE Method: Delete Order
 
-        public async Task<bool> DeleteOrder(int id)
+        public async Task<bool> DeleteOrderAsync(int id)
         {
-            var order = await _context.Orders.FirstOrDefaultAsync(o => o.Id == id);
+            var order = await _context.Orders.FindAsync(id);
             if (order == null)
                 return false;
 

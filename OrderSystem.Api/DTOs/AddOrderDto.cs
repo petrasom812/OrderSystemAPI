@@ -1,6 +1,5 @@
 using System.ComponentModel.DataAnnotations;
 
-
 namespace OrderSystem.Api.DTOs
 {
     public class AddOrderDto

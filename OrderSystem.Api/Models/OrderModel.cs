@@ -1,5 +1,3 @@
-
-
 namespace OrderSystem.Api.Models
 {
     public class OrderModel
