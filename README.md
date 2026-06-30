@@ -12,3 +12,20 @@ Backend API built with ASP.NET Core
 ## Tech Stack
 - ASP.NET Core
 - EF Core + SQLite
+
+Order
+ └── OrderItem
+       └── Product
+             └── Inventory
+
+Orders.Id
+    ↓
+OrderItems.OrderId
+
+Products.Id
+    ↓
+OrderItems.ProductId
+
+Products.Id
+    ↓
+Inventories.ProductId
