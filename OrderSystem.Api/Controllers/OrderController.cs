@@ -31,13 +31,13 @@ namespace OrderSystem.Api.Controllers
         [HttpPost]
         public async Task<ActionResult> PostOrder(AddOrderDto dto)
         {
-            var order = await _serivices.AddOrderAsync(dto.TotalAmount, dto.Status);
+            var order = await _serivices.AddOrderAsync(dto);
             return Ok(order); 
         }
         [HttpPut("{id}")]
         public async Task<IActionResult> PutOrder(int id, UpdateOrderDto dto)
         {
-            var order = await _serivices.UpdateOrderAsync(id, dto.TotalAmount, dto.Status);
+            var order = await _serivices.UpdateOrderAsync(id, dto);
             return order == null ? NotFound("Order not found.") : Ok("Order information updated.");
         }
         [HttpDelete("{id}")]

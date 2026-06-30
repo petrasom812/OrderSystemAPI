@@ -1,5 +1,6 @@
 using Microsoft.EntityFrameworkCore;
 using OrderSystem.Api.Models;
+using OrderSystem.Api.Models.Inventory;
 
 namespace OrderSystem.Api.Data
 {
@@ -11,5 +12,8 @@ namespace OrderSystem.Api.Data
             
         }
         public DbSet<OrderModel> Orders {get; set;}
+        public DbSet<OrderItemModel> OrderItems {get; set;}
+        public DbSet<ProductModel> Products {get; set;}
+        public DbSet<InventoryModel> Inventories {get; set;}
     }
 }

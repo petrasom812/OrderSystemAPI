@@ -5,8 +5,8 @@ namespace OrderSystem.Api.Interface
     {
         Task<List<GetOrderDto>> GetOrderAsync();
         Task<GetOrderDetailDto?> GetOrderDetailByIdAsync(int id);
-        Task<GetOrderDetailDto> AddOrderAsync(decimal totalAmount, string status);
-        Task<UpdateOrderDto?> UpdateOrderAsync(int id, decimal totalAmount, string status);
+        Task<GetOrderDetailDto> AddOrderAsync(AddOrderDto dto);
+        Task<UpdateOrderDto?> UpdateOrderAsync(int id, UpdateOrderDto dto);
         Task<bool> DeleteOrderAsync(int id);
     }
 }
